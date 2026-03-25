@@ -1,0 +1,132 @@
+body {
+    background-color: #fdf5f5;
+}
+
+.tomato-info h2 {
+    color: var(--dark-teal);
+    font-size: 32px;
+}
+
+.info-text p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.highlight-box {
+    border-left: 3px solid #dc3545;
+    padding-left: 20px;
+}
+
+.highlight-box p {
+    font-weight: 500;
+    font-size: 15px;
+    margin: 0;
+    color: #4a4a4a;
+}
+
+.programs-container {
+    background-color: #ffffff;
+    padding: 40px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02); 
+}
+
+.program-item h5 {
+    color: var(--dark-teal);
+    font-weight: 700;
+    font-size: 16px;
+    min-height: 45px;
+    margin-bottom: 0;
+}
+
+.program-item hr {
+    border-top: 1px solid #70b34d;
+    width: 100%;
+    margin: 15px 0;
+}
+
+.program-item p {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 0;
+}
+
+
+.highlight-box {
+    border-left: 3px solid #E06060;
+    padding-left: 15px;
+}
+
+.highlight-box p {
+    font-weight: 700;
+    font-size: 15px;
+    margin: 0;
+    color: #324950;
+}
+
+.tomato-card {
+    background-color: #fff;
+    text-align: center;
+    width: 100%;
+    max-width: 350px;
+    height: 321px;
+    margin: 0 auto;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02); 
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.tomato-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+.tomato-card-img-wrapper {
+    width: 100%;
+    height: 235px;
+    flex-shrink: 0;
+    overflow: hidden;
+    position: relative;
+    background-color: #f8f8f8;
+}
+
+.tomato-card-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.tomato-card-body {
+    height: 86px;
+    padding: 15px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.tomato-card-body h6 {
+    color: #57984C;
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.tomato-card-body p {
+    color: #57984C; 
+    font-weight: 800;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.tomato-card-body p {
+    color: #57984C; 
+    font-weight: 400;
+    font-size: 12px;
+    margin-bottom: 0;
+}
