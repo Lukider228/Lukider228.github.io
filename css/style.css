@@ -88,3 +88,29 @@ body { font-family: 'Roboto Slab', serif; color: #333; }
     height: 213px;
     object-fit: contain;
 }
+
+
+/* Tomato One Page */
+.tomato-list {
+    list-style: none;
+    padding-left: 0;
+    color: #324950;
+    font-size: 17px;
+    line-height: 200%;
+}
+
+.tomato-list li {
+    position: relative;
+    padding-left: 20px;
+}
+
+.tomato-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 6px;
+    height: 6px;
+    background-color: #57984C;
+    border-radius: 50%;
+}
