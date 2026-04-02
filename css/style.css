@@ -114,3 +114,48 @@ body { font-family: 'Roboto Slab', serif; color: #333; }
     background-color: #57984C;
     border-radius: 50%;
 }
+
+.hero-wrapper {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 420px;
+}
+
+.contact-section {
+    background: #f7f7f7;
+}
+
+.contact-card {
+    border-radius: 30px;
+}
+
+.contact-card .form-control {
+    border: 1px solid #dfe2e5;
+    border-radius: 10px;
+    box-shadow: none;
+}
+
+.contact-card .form-control:focus {
+    border-color: var(--main-green);
+    box-shadow: none;
+}
+
+.btn-send {
+    background: var(--main-green);
+    border-color: var(--main-green);
+    color: #fff;
+    min-width: 200px;
+}
+
+.captcha-code {
+    min-width: 70px;
+    padding: 12px 16px;
+    border: 1px solid #dfe2e5;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #324950;
+    background: #fafafa;
+}
