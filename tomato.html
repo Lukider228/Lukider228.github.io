@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="js/main.js" defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tomato Hybrids - Agridera</title>
+    <title>Kiwi Hybrids - Agridera</title>
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Slab:wght@300;400;700&display=swap" rel="stylesheet">
@@ -17,7 +19,7 @@
 </head>
 <body>
 
-    <header class="site-header">
+    <header class="site-header-header">
     <div class="container">
         <input type="checkbox" id="menu-checkbox" class="menu-checkbox" style="display: none;">
         
@@ -64,167 +66,41 @@
 
     <main>
         <section class="tomato-hero-banner">
-            <img src="images/tomato_banner.svg" alt="Fresh Market Tomato Hybrids" class="img-fluid w-100" style="max-height: 400px; object-fit: cover;">
+            <img src="images/tomato one/KiviBg.png" alt="Fresh Market Tomato Hybrids" class="img-fluid w-100" style="max-height: 400px; object-fit: cover;">
         </section>
 
 <section class="tomato-info py-5">
             <div class="container">
-                <h2 class="title-underline">Agridera Fresh Market Tomato Hybrids</h2>
+                <h2 class="title-underline">Agridera Fresh Market Kiwi Hybrids</h2>
                 
                 <div class="info-text mt-4">
-                    <p>Agridera aims to be one of the world's leading companies in the breeding, production, and marketing of tomato seeds. <strong>We invest intensively in research and development to provide solutions to growers and consumers in numerous countries around the world.</strong> In particular, we breed improved disease-resistant cultivars adapted to different markets globally.</p>
-                    <p>Currently, emphasis is placed on combining Tomato Yellow Leaf Curl Virus (TYLCV) and Tomato Spotted Wilt Virus (TSWV) resistances with other soil borne diseases into superior tomato breeding lines and hybrids. Moreover, comprehensive efforts are being undertaken to develop varieties resistance to TBRFV virus (Tomato Brown Rugose Fruit Virus).</p>
-                    <p>In terms of horticultural traits, breeding is for earliness, different fruit sizes, firmness, red fruit color, flavor, crack resistance, shelf life, and high/low temperature fruit set. Combinations of quality features and disease resistance are sought in a variety of types, namely round and elongated shapes.</p>
+                    <p>Agridera aims to be one of the world's leading companies in the breeding, production, and marketing of kiwi seeds and cultivars. We invest intensively in research and development to provide solutions to growers and consumers in numerous countries around the world. In particular, we breed improved disease-resistant cultivars adapted to different environmental conditions and markets globally.</p>
+                    <p>Currently, emphasis is placed on combining resistance to <strong>PSA (Pseudomonas syringae pv. actinidiae)</strong> and <strong>Kiwi Berry Root Rot</strong> with other soil-borne tolerances into superior kiwi breeding lines and hybrids. Moreover, comprehensive efforts are being undertaken to develop varieties with enhanced resilience to emerging viral and bacterial threats affecting vine health. </p>
+                    <p>In terms of horticultural traits, breeding is focused on harvest earliness, optimized fruit size, flesh firmness, vibrant internal color (Gold, Green, and Red variations), balanced sugar-to-acid flavor profiles, skin smoothness, extended shelf life, and consistent fruit set under varying temperature fluctuations. Combinations of premium quality features and robust disease resistance are sought across a variety of types, specifically focusing on both smooth-skinned and traditional fuzzy varieties.</p>
                 </div>
 
                 <div class="highlight-box my-4">
-                    <p>Agridera Tomato breeding programs are focusing on three main segments: Greenhouse Indeterminate Tomatoes, Open-field Indeterminate Tomatoes, and Bush Type Open-field Tomatoes.</p>
+                    <p>Agridera Kiwi breeding programs are focusing on three main segments: High-Tech Greenhouse Cultivation, Intensive Orchard Trellis Systems, and Climate-Resilient Open-Field Plantations.</p>
                 </div>
 
                 <div class="programs-container mt-5">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="program-item">
-                                <h5>Greenhouse Tomato Breeding Program</h5>
-                                <hr>
-                    <p><strong>This breeding is aimed for the Spanish and Turkish markets.</strong> For single and cluster picks, round fruit shape and resistances of TYLCV, TSWV, Nematodes and FORL (Fusarium oxysporum f.sp. radicis-lycopersici). Some hybrids may include more resistances, such as Cladosporium and Leveillula Taurica (Lv).</p>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="program-item">
-                                <h5>Open-field Indeterminate Tomatoes</h5>
-                                <hr>
-                                <p><strong>This breeding is for Brazilian, Moroccan, and Turkish markets.</strong> The main focus is on large round shape fruits (200 grams plus); and resistances of TYLCV, TSWV, Nematodes and FORL. In the near future, F3 (Fusarium oxysporum f.sp. lycopersici) will be included as basic resistance in our cultivars.</p>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="program-item">
-                                <h5>Open-field Bush Type Tomatoes</h5>
-                                <hr>
-                                <p><strong>This breeding is for Mediterranean markets.</strong> We breed round and elongated shapes, standard sizes (140- 180 grams), and beef sizes (min. 180 grams up to 300 grams and more). We combine the resistances of TYLCV, TSWV and Nematodes as basic resistances in our hybrids. However, some hybrids may include more resistances, such as Cladosporium and Leveillula Taurica (Lv).</p>
-                            </div>
-                        </div>
-                    </div>
+    <div class="row" id="app">
+        <div class="col-md-4 mb-4" v-for="item in products" :key="item.id">
+            <div class="tomato-card">
+                <a :href="'tomato_one.html#' + item.id" class="tomato-card-img-wrapper">
+                    <img :src="item.image" :alt="item.title">
+                </a>
+                
+                <div class="tomato-card-content text-center mt-2">
+                    <a :href="'tomato_one.html#' + item.id">
+                        <h5>{{ item.title }}</h5>
+                    </a>
+                    <p>{{ item.description }}</p>
                 </div>
-        
-        <div class="highlight-box mt-5 mb-4">
-                    <p>Agridera operates through international and local distributors around the world.</p>
-                </div>
-
-                <div class="row mt-4">
-                    <div class="col-md-4 mb-4">
-                        <a href="tomato_one.html" class="d-block">
-                            <div class="tomato-card">
-                                <div class="tomato-card-img-wrapper">
-                                    <img src="images/tomato_1.svg" alt="TAG 1000">
-                                </div>
-                                <div class="tomato-card-body">
-                                    <h6>TAG 1000 (TAG 853)</h6>
-                                    <p>Tomato Determinate Red Standard Round</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    
-                    <div class="col-md-4 mb-4">
-                        <a href="tomato_one.html" class="d-block">
-                            <div class="tomato-card">
-                                <div class="tomato-card-img-wrapper">
-                                    <img src="images/tomato_4.svg" alt="TAG 1003">
-                                </div>
-                                <div class="tomato-card-body">
-                                    <h6>TAG 1003 (TAG 834)</h6>
-                                    <p>Tomato Determinate Red Standard Round</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="col-md-4 mb-4">
-                        <a href="tomato_one.html" class="d-block">
-                            <div class="tomato-card">
-                                <div class="tomato-card-img-wrapper">
-                                    <img src="images/tomato_7.svg" alt="TAG 1006">
-                                </div>
-                                <div class="tomato-card-body">
-                                    <h6>TAG 1006 (TAG 898)</h6>
-                                    <p>Tomato Determinate Red Standard Round</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="col-md-4 mb-4">
-                        <a href="tomato_one.html" class="d-block">
-                            <div class="tomato-card">
-                                <div class="tomato-card-img-wrapper">
-                                    <img src="images/tomato_2.svg" alt="TAG 1001">
-                                </div>
-                                <div class="tomato-card-body">
-                                    <h6>TAG 1001 (TAG 855)</h6>
-                                    <p>Tomato Determinate Red Standard Round</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="col-md-4 mb-4">
-                        <a href="tomato_one.html" class="d-block">
-                            <div class="tomato-card">
-                                <div class="tomato-card-img-wrapper">
-                                    <img src="images/tomato_5.svg" alt="TAG 1004">
-                                </div>
-                                <div class="tomato-card-body">
-                                    <h6>TAG 1004 (TAG 848)</h6>
-                                    <p>Tomato Determinate Red BEEF Round</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="col-md-4 mb-4">
-                        <a href="tomato_one.html" class="d-block">
-                            <div class="tomato-card">
-                                <div class="tomato-card-img-wrapper">
-                                    <img src="images/tomato_8.svg" alt="TAG 1007">
-                                </div>
-                                <div class="tomato-card-body">
-                                    <h6>TAG 1007 (TAG 816)</h6>
-                                    <p>Tomato Determinate Red Standard Round</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="col-md-4 mb-4">
-                        <a href="tomato_one.html" class="d-block">
-                            <div class="tomato-card">
-                                <div class="tomato-card-img-wrapper">
-                                    <img src="images/tomato_3.svg" alt="TAG 1002">
-                                </div>
-                                <div class="tomato-card-body">
-                                    <h6>TAG 1002 (TAG 809)</h6>
-                                    <p>Tomato Determinate Red Elongated</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="col-md-4 mb-4">
-                        <a href="tomato_one.html" class="d-block">
-                            <div class="tomato-card">
-                                <div class="tomato-card-img-wrapper">
-                                    <img src="images/tomato_6.svg" alt="TAG 1005">
-                                </div>
-                                <div class="tomato-card-body">
-                                    <h6>TAG 1005 (TAG 800)</h6>
-                                    <p>Tomato Determinate Red Elongated</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                </div>
+            </div>
+        </div>
+    </div>
+</div>
             </section>
         </main>
 
