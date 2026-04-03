@@ -1,5 +1,5 @@
 var app = new Vue({
-    el: '#app', // Цей ID має бути на <main> в обох HTML файлах
+    el: '#app',
     data: {
         products: [
             {
@@ -68,65 +68,78 @@ var app = new Vue({
                 color: ['Green']
             }
         ],
-        product: [], // Пустий масив для поточного товару
-        btnVisible: 0 // Змінна із значенням 0
+        product: [],
+        btnVisible: 0,
+        cart: [],
+        contactFields: {},
+        orderSubmitted: false
+    },
+    mounted() {
+        this.getCart();
+        this.getProduct(); 
+        this.checkInCart();
     },
     methods: {
         getProduct() {
-            const hash = window.location.hash;
-            if (hash) {
-                const productId = hash.substring(1);
-                const found = this.products.find(item => item.id === productId);
-                if (found) {
-                    this.product = [found];
-                    // Перевіряємо кошик відразу після знаходження товару
-                    this.checkInCart(productId);
+            let urlParams = new URLSearchParams(window.location.search);
+            let productId = urlParams.get('id');
+            
+            if (productId) {
+                let foundProduct = this.products.find(p => p.id === productId);
+                if (foundProduct) {
+                    this.product = [foundProduct];
                 }
             }
         },
-
-        // Надійна функція додавання в localStorage
         addToCart(id) {
-            let cart = [];
-            try {
-                // Пробуємо отримати дані. Якщо там щось зламане, створюємо порожній масив
-                let storedCart = localStorage.getItem('cart');
-                cart = storedCart ? JSON.parse(storedCart) : [];
-                if (!Array.isArray(cart)) cart = [];
-            } catch (error) {
-                cart = [];
+            let storedIds = [];
+            let lsCart = localStorage.getItem('cart');
+            if (lsCart) {
+                storedIds = JSON.parse(lsCart);
+            }
+            if (!storedIds.includes(id)) {
+                storedIds.push(id);
+                localStorage.setItem('cart', JSON.stringify(storedIds));
             }
             
-            // Якщо id товару ще немає в кошику — додаємо
-            if (!cart.includes(id)) {
-                cart.push(id);
-                localStorage.setItem('cart', JSON.stringify(cart));
-            }
-            
-            // Змінюємо видимість кнопок
-            this.btnVisible = 1;
+            this.btnVisible = 1; 
+            this.getCart();
         },
-
-        // Надійна функція перевірки
-        checkInCart(id) {
-            let cart = [];
-            try {
-                let storedCart = localStorage.getItem('cart');
-                cart = storedCart ? JSON.parse(storedCart) : [];
-                if (!Array.isArray(cart)) cart = [];
-            } catch (error) {
-                cart = [];
+        checkInCart() {
+            let urlParams = new URLSearchParams(window.location.search);
+            let productId = urlParams.get('id');
+            let lsCart = localStorage.getItem('cart');
+            
+            if (lsCart && productId) {
+                let storedIds = JSON.parse(lsCart);
+                if (storedIds.includes(productId)) {
+                    this.btnVisible = 1;
+                }
             }
-
-            if (cart.includes(id)) {
-                this.btnVisible = 1;
-            } else {
-                this.btnVisible = 0;
+        },
+        getCart() {
+            let storedIds = [];
+            let lsCart = localStorage.getItem('cart');
+            if (lsCart) {
+                storedIds = JSON.parse(lsCart);
             }
+            this.cart = [];
+            storedIds.forEach(id => {
+                let p = this.products.find(item => item.id === id);
+                if (p) {
+                    this.cart.push(p);
+                }
+            });
+        },
+        removeFromCart(id) {
+            this.cart = this.cart.filter(item => item.id !== id);
+            let updatedIds = this.cart.map(item => item.id);
+            localStorage.setItem('cart', JSON.stringify(updatedIds));
+        },
+        makeOrder() {
+            this.orderSubmitted = true;
+            this.cart = [];
+            localStorage.removeItem('cart');
         }
-    },
-    mounted() {
-        // Викликаємо пошук товару при завантаженні сторінки
-        this.getProduct();
     }
 });

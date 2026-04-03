@@ -82,17 +82,45 @@
                 <div class="highlight-box my-4">
                     <p>Agridera Kiwi breeding programs are focusing on three main segments: High-Tech Greenhouse Cultivation, Intensive Orchard Trellis Systems, and Climate-Resilient Open-Field Plantations.</p>
                 </div>
+                <div class="breeding-programs-container mt-5 mb-5">
+                    <div class="row">
+                        <div class="col-md-4 program-col">
+                            <h3>Greenhouse Kiwi Breeding Program</h3>
+                            <hr>
+                            <p>This breeding program is aimed at the Spanish and Turkish markets. It focuses on both single-fruit and cluster-harvest varieties, characterized by a consistent oval-to-round fruit shape. Key breeding goals include robust resistance to <strong>PSA (Pseudomonas syringae pv. actinidiae), Kiwi Berry Root Rot, and Soil-borne Nematodes.</strong>Some premium hybrids may include additional resistances, such as tolerances to specific fungal pathogens like <strong>Botrytis and Sclerotinia.</strong></p>
+                        </div>
+                        <div class="col-md-4 program-col">
+                            <h3>Orchard-Intensive Indeterminate Kiwi</h3>
+                            <hr>
+                            <p>This breeding segment is designed for the Brazilian, Moroccan, and Turkish markets. The primary focus is on developing large-caliber fruits (120 grams plus) with exceptional flesh density. Priorities include integrated resistance to <strong>PSA, Phytophthora, and Root-knot Nematodes.</strong> In the near future, enhanced tolerance to <strong>Armillaria Root Rot</strong> will be included as a standard resistance trait in our commercial cultivars.</p>
+                        </div>
+                        <div class="col-md-4 program-col">
+                            <h3>Open-Field Bush-Type Kiwi Varieties</h3>
+                            <hr>
+                            <p>This breeding program is dedicated to the Mediterranean markets. We develop both traditional fuzzy and smooth-skinned elongated shapes, ranging from standard sizes (80–100 grams) to "Jumbo" beef-style sizes (minimum 110 grams up to 150 grams and more). We combine resistance to <strong>PSA and Nematodes</strong>as core traits in our hybrids. Additionally, selected hybrids may feature further protections, such as resistance to Mildew (Oidium) and environmental stress tolerances for open-air cultivation.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-5 mb-4">
+                    <div class="col-12">
+                        <div class="distributor-box">
+                            <div class="highlight-box my-4">
+                            <p>Agridera operates through international and local distributers around the world.</p>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="programs-container mt-5">
     <div class="row" id="app">
         <div class="col-md-4 mb-4" v-for="item in products" :key="item.id">
             <div class="tomato-card">
-                <a :href="'tomato_one.html#' + item.id" class="tomato-card-img-wrapper">
+                <a :href="'tomato_one.html?id=' + item.id" class="tomato-card-img-wrapper">
                     <img :src="item.image" :alt="item.title">
                 </a>
                 
                 <div class="tomato-card-content text-center mt-2">
-                    <a :href="'tomato_one.html#' + item.id">
+                    <a :href="'tomato_one.html?id=' + item.id">
                         <h5>{{ item.title }}</h5>
                     </a>
                     <p>{{ item.description }}</p>

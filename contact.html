@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="js/main.js" defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - Agridera</title>
@@ -64,43 +66,71 @@
     <section class="hero-wrapper" style="background-image: url('images/contact us/up backg.png');">
     </section>
 
-    <main>
-        <section class="contact-section py-5">
-            <div class="container">
-                <div class="mx-auto" style="max-width: 960px;">
-                    <h2 class="title-underline">Contact us</h2>
+    <main id="app">
+    <section class="contact-section py-5">
+        <div class="container">
+            <div class="mx-auto" style="max-width: 960px;">
+                <h2 class="title-underline">Contact us</h2>
 
-                    <form id="contact-form">
-                        <div class="contact-card bg-white shadow-sm p-4 p-lg-5 mt-5">
-                            <div class="row">
-                                <div class="col-lg-6 pr-lg-4">
+                <div v-if="cart.length > 0 && !orderSubmitted" class="cart-table-wrapper mt-4 mb-5 bg-white p-4 shadow-sm" style="border-radius: 15px;">
+                    <h4 style="color: #57984C; font-weight: bold; margin-bottom: 20px;">Your Cart</h4>
+                    <table class="table table-bordered table-hover mb-0">
+                        <thead style="background-color: #f7f7f7;">
+                            <tr>
+                                <th scope="col" class="text-center" style="width: 100px;">Image</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Description</th>
+                                <th scope="col" class="text-center" style="width: 60px;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="item in cart" :key="item.id">
+                                <td class="text-center align-middle">
+                                    <img :src="item.image" :alt="item.title" style="max-width: 60px; height: auto;">
+                                </td>
+                                <td class="align-middle font-weight-bold" style="color: #324950;">{{ item.title }}</td>
+                                <td class="align-middle" style="font-size: 14px;">{{ item.description }}</td>
+                                <td class="text-center align-middle">
+                                    <button @click="removeFromCart(item.id)" class="btn btn-sm btn-outline-danger" style="border: none;">
+                                        <i class="fas fa-times" style="font-size: 18px;"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <form id="contact-form" @submit.prevent="makeOrder" v-if="!orderSubmitted">
+                    <div class="contact-card bg-white shadow-sm p-4 p-lg-5 mt-5">
+                        <div class="row">
+                            <div class="col-lg-6 pr-lg-4">
                                 <div class="form-group">
                                     <label for="contact-name">Name *</label>
-                                    <input type="text" id="contact-name" class="form-control" placeholder="Name">
+                                    <input type="text" id="contact-name" class="form-control" placeholder="Name" v-model="contactFields.name" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="contact-company">Company Name</label>
-                                    <input type="text" id="contact-company" class="form-control" placeholder="Company Name">
+                                    <input type="text" id="contact-company" class="form-control" placeholder="Company Name" v-model="contactFields.company">
                                 </div>
                                 <div class="form-group">
                                     <label for="contact-position">Position</label>
-                                    <input type="text" id="contact-position" class="form-control" placeholder="Position">
+                                    <input type="text" id="contact-position" class="form-control" placeholder="Position" v-model="contactFields.position">
                                 </div>
                                 <div class="form-group">
                                     <label for="contact-city">City</label>
-                                    <input type="text" id="contact-city" class="form-control" placeholder="City">
+                                    <input type="text" id="contact-city" class="form-control" placeholder="City" v-model="contactFields.city">
                                 </div>
                                 <div class="form-group">
                                     <label for="contact-country">Country</label>
-                                    <input type="text" id="contact-country" class="form-control" placeholder="Country">
+                                    <input type="text" id="contact-country" class="form-control" placeholder="Country" v-model="contactFields.country">
                                 </div>
                                 <div class="form-group">
                                     <label for="contact-phone">Telephone</label>
-                                    <input type="tel" id="contact-phone" class="form-control" placeholder="Telephone">
+                                    <input type="tel" id="contact-phone" class="form-control" placeholder="Telephone" v-model="contactFields.phone">
                                 </div>
                                 <div class="form-group mb-0">
                                     <label for="contact-email">Email *</label>
-                                    <input type="email" id="contact-email" class="form-control" placeholder="Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please enter a valid email address">
+                                    <input type="email" id="contact-email" class="form-control" placeholder="Email" v-model="contactFields.email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please enter a valid email address">
                                     <div class="invalid-feedback">Please enter a valid email address.</div>
                                 </div>
                             </div>
@@ -108,7 +138,7 @@
                             <div class="col-lg-6 pl-lg-4">
                                 <div class="form-group">
                                     <label for="contact-role">You are a</label>
-                                    <select id="contact-role" class="form-control">
+                                    <select id="contact-role" class="form-control" v-model="contactFields.role">
                                         <option>seed producer</option>
                                         <option>distributor</option>
                                         <option>farmer</option>
@@ -117,17 +147,17 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="contact-other">If other, please specify</label>
-                                    <input type="text" id="contact-other" class="form-control" placeholder="If other, please specify">
+                                    <input type="text" id="contact-other" class="form-control" placeholder="If other, please specify" v-model="contactFields.other">
                                 </div>
                                 <div class="form-group">
                                     <label for="contact-interest">You are interested in</label>
-                                    <textarea id="contact-interest" class="form-control" rows="8" placeholder="You are interested in"></textarea>
+                                    <textarea id="contact-interest" class="form-control" rows="8" placeholder="You are interested in" v-model="contactFields.interest"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="contact-code">Please type this code</label>
                                     <div class="d-flex align-items-center">
                                         <span class="captcha-code mr-3"><img src="images/contact us/code.png" alt="Verification code" style="max-height: 34px;"></span>
-                                        <input id="contact-code" type="text" class="form-control" placeholder="">
+                                        <input id="contact-code" type="text" class="form-control" placeholder="" v-model="contactFields.code">
                                     </div>
                                 </div>
                                 <div class="text-lg-right mt-4">
@@ -136,20 +166,40 @@
                             </div>
                         </div>
                     </div>
-                    </form>
+                </form>
 
-                    <div class="contact-info text-center mt-5">
-                        <p class="mb-2 text-uppercase" style="color: #57984C; letter-spacing: 1.5px;">Our Address</p>
-                        <div class="line-sm mx-auto" style="width: 70px; margin-bottom: 18px;"></div>
-                        <p class="mb-1">AGRIDERA Seeds & Agriculture Ltd.</p>
-                        <p class="mb-1">P.O Box 103,</p>
-                        <p class="mb-1">Gedera 70750, Israel.</p>
-                        <p class="mb-0" style="color: #57984C;">Telephone: +972 8 944 9222</p>
+                <div v-if="orderSubmitted" class="contact-card bg-white shadow-sm p-4 p-lg-5 mt-5 text-center" style="border-top: 5px solid #57984C;">
+                    <h2 style="color: #57984C; font-weight: bold; font-size: 36px; margin-bottom: 20px;">Success!</h2>
+                    <p style="font-size: 18px; color: #324950; margin-bottom: 30px;">Thank you for your order and message. Here is the information you submitted:</p>
+                    
+                    <div class="text-left mx-auto p-4" style="background-color: #f7f7f7; border-radius: 10px; max-width: 600px;">
+                        <ul class="list-unstyled mb-0" style="font-size: 16px; color: #333; line-height: 1.8;">
+                            <li><strong>Name:</strong> {{ contactFields.name }}</li>
+                            <li v-if="contactFields.company"><strong>Company:</strong> {{ contactFields.company }}</li>
+                            <li v-if="contactFields.position"><strong>Position:</strong> {{ contactFields.position }}</li>
+                            <li v-if="contactFields.city"><strong>City:</strong> {{ contactFields.city }}</li>
+                            <li v-if="contactFields.country"><strong>Country:</strong> {{ contactFields.country }}</li>
+                            <li v-if="contactFields.phone"><strong>Telephone:</strong> {{ contactFields.phone }}</li>
+                            <li><strong>Email:</strong> {{ contactFields.email }}</li>
+                            <li v-if="contactFields.role"><strong>Role:</strong> {{ contactFields.role }}</li>
+                            <li v-if="contactFields.other"><strong>Other Role:</strong> {{ contactFields.other }}</li>
+                            <li v-if="contactFields.interest"><strong>Interest:</strong> {{ contactFields.interest }}</li>
+                        </ul>
                     </div>
                 </div>
+
+                <div class="contact-info text-center mt-5">
+                    <p class="mb-2 text-uppercase" style="color: #57984C; letter-spacing: 1.5px;">Our Address</p>
+                    <div class="line-sm mx-auto" style="width: 70px; margin-bottom: 18px;"></div>
+                    <p class="mb-1">AGRIDERA Seeds & Agriculture Ltd.</p>
+                    <p class="mb-1">P.O Box 103,</p>
+                    <p class="mb-1">Gedera 70750, Israel.</p>
+                    <p class="mb-0" style="color: #57984C;">Telephone: +972 8 944 9222</p>
+                </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
+</main>
 
     <footer class="site-footer">
     <div class="container">
