@@ -8,7 +8,7 @@ var app = new Vue({
                 subtitle: 'Determinate Green Elongated',
                 highlight: 'Very high yield and excellent fruits quality!',
                 description: 'Kiwi Determinate Green Elongated. Very high yield and excellent fruits quality!',
-                image: 'img./Kiv1.png',
+                image: './img/Kiv1.png', // Виправлено шлях та регістр
                 resistance: 'HR: PSA, Kiwi Berry Root Rot',
                 plant: ['Strong vigor.', 'High productivity.'],
                 cycle: ['Spring', 'Summer'],
@@ -21,7 +21,7 @@ var app = new Vue({
                 subtitle: 'Determinate Yellow Round',
                 highlight: 'Perfect balance of taste and yield!',
                 description: 'Kiwi Determinate Yellow Round. Perfect balance of taste and yield!',
-                image: 'img./Kiv2.png',
+                image: './img/Kiv2.png', // Виправлено шлях та регістр
                 resistance: 'HR: PSA',
                 plant: ['Medium vigor.', 'Heat tolerant.'],
                 cycle: ['Summer'],
@@ -34,7 +34,7 @@ var app = new Vue({
                 subtitle: 'Gold Variety',
                 highlight: 'Excellent firmness and long shelf life!',
                 description: 'Kiwi Gold Variety. Excellent firmness and long shelf life on plant!',
-                image: 'img./Kiv3.png',
+                image: './img/Kiv3.png', // Виправлено шлях та регістр
                 resistance: 'HR: Root Rot',
                 plant: ['Compact plant.'],
                 cycle: ['Spring'],
@@ -47,7 +47,7 @@ var app = new Vue({
                 subtitle: 'Jumbo Round',
                 highlight: 'Great adaptability to various soil conditions!',
                 description: 'Kiwi Jumbo Round. Great adaptability to various soil conditions!',
-                image: 'img./Kiv4.png',
+                image: './img/Kiv4.png', // Виправлено шлях та регістр
                 resistance: 'IR: PSA',
                 plant: ['Robust plant.', 'Large leaves.'],
                 cycle: ['Autumn'],
@@ -60,7 +60,7 @@ var app = new Vue({
                 subtitle: 'Baby Round Snack',
                 highlight: 'Small sized fruits with exceptional internal quality!',
                 description: 'Kiwi Baby Round. Small sized fruits with exceptional internal quality!',
-                image: 'img./Kiv5.png',
+                image: './img/Kiv5.png', // Виправлено шлях та регістр
                 resistance: 'HR: TSWV',
                 plant: ['Small structure.', 'High density.'],
                 cycle: ['Year round'],
