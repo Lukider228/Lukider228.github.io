@@ -1,0 +1,182 @@
+/* =========================================
+   1. ВЕЛИКІ ЕКРАНИ (1920px, 1600px, 1480px)
+   ========================================= */
+@media (min-width: 1480px) {
+    .container {
+        max-width: 1400px; /* Трохи розширюємо контейнер для великих моніторів */
+    }
+    .hero-content h1 {
+        font-size: 56px; /* Більший заголовок для високої роздільної здатності */
+    }
+}
+
+/* =========================================
+   2. СТАНДАРТНИЙ ДЕСКТОП (1280px і вище)
+   ========================================= */
+@media (min-width: 1026px) {
+    .mobile-search-wrapper, .mobile-menu-btn {
+        display: none !important;
+    }
+    .desktop-search-wrapper {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 10px;
+    }
+    .navigation-wrapper {
+        display: block !important;
+    }
+    .main-logo {
+        max-width: 280px;
+    }
+}
+/* =========================================
+   3. ПЛАНШЕТИ (iPad Landscape/Portrait - до 1026px)
+   ========================================= */
+/* ДЕСКТОП (від 1026px і більше) */
+@media (min-width: 1026px) {
+    .mobile-search-wrapper, .mobile-menu-btn {
+        display: none !important; /* Ховаємо мобільні елементи */
+    }
+    .desktop-search-wrapper {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 10px;
+    }
+    .navigation-wrapper {
+        display: block !important;
+    }
+}
+
+/* МОБІЛЬНІ ТА ПЛАНШЕТИ (до 1025px включно) */
+@media (max-width: 1025px) {
+    .header-row {
+        flex-direction: column;
+        position: relative;
+    }
+    .mission-row {
+    display: flex;
+    flex-direction: column-reverse !important;
+}
+    /* Ховаємо десктопний пошук, показуємо мобільний */
+    .desktop-search-wrapper {
+        display: none !important;
+    }
+    .mobile-search-wrapper {
+        display: block;
+        width: 100%;
+        max-width: 250px; /* Має співпадати з шириною лого */
+    }
+
+    /* Центрування лого та пошуку */
+    .brand-search-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        padding-top: 15px;
+    }
+
+    .main-logo {
+        width: 100%;
+        max-width: 250px; 
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    .mobile-search-wrapper .search-box {
+        width: 100%;
+        display: flex;
+    }
+
+    /* Кнопка бургера */
+    .mobile-menu-btn {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        font-size: 28px;
+        color: #57984C;
+        cursor: pointer;
+    }
+
+    /* Випадаюче меню */
+    .navigation-wrapper {
+        display: none; /* Сховано, поки не натиснуто бургер */
+        width: 100%;
+        background: #fff;
+        text-align: center;
+        margin-top: 15px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .main-nav .nav {
+        flex-direction: column;
+        padding: 10px 0;
+    }
+
+    .main-nav .nav-link {
+        padding: 12px;
+        border-bottom: 1px solid #f0f0f0;
+        color: #333 !important;
+    }
+
+    /* Робота бургера через чекбокс */
+    .menu-checkbox:checked ~ .header-row .navigation-wrapper {
+        display: block;
+    }
+}
+/* =========================================
+   Адаптивний футер (до 1025px)
+   ========================================= */
+@media (max-width: 1025px) {
+    /* Робимо головний контейнер футеру вертикальним */
+    .footer-main {
+        flex-direction: column !important;
+        text-align: center;
+        padding-bottom: 30px !important;
+    }
+
+    /* Навігаційні посилання: вирівнюємо по центру та додаємо відступи */
+    .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-bottom: 25px; /* Відступ від посилань до іконок */
+    }
+
+    .footer-links a {
+        margin: 5px 12px;
+        font-size: 14px;
+        text-decoration: none;
+        color: #AEBDBF;
+        font-weight: 500;
+    }
+
+    /* Соцмережі: вирівнюємо по центру */
+    .footer-socials {
+        display: flex;
+        justify-content: center;
+        gap: 15px; /* Відстань між іконками */
+    }
+
+    .footer-socials .social-item {
+        margin: 0 !important;
+    }
+
+    .footer-socials .social-item img {
+        width: 30px; /* Коригування розміру іконок під мобільні */
+        height: auto;
+    }
+
+    /* Копірайт: зменшуємо шрифт для малих екранів */
+    .footer-copyright p {
+        font-size: 12px;
+    }
+}
+
+/* Для дуже малих екранів (iPhone SE/4) */
+@media (max-width: 375px) {
+    .footer-links a {
+        font-size: 12px;
+        margin: 5px 8px;
+    }
+}
